@@ -1,0 +1,1110 @@
+{
+  "swagger": "2.0",
+  "info": {
+      "version": "v0",
+      "title": "Hacker News",
+      "description": "## Welcome\n\nThis is a place to put general notes and extra information, for internal use.\n\nTo get started designing/documenting this API, select a version on the left. # Title\nNo Description"
+  },
+  "host": "hacker-news.firebaseio.com",
+  "basePath": "/v0",
+  "schemes": [
+      "https"
+  ],
+  "paths": {
+      "/item/{item-id}.json": {
+          "parameters": [
+              {
+                  "name": "item-id",
+                  "in": "path",
+                  "required": true,
+                  "type": "integer"
+              }
+          ],
+          "get": {
+              "operationId": "GET_item-item-id-json",
+              "summary": "Get By ID",
+              "tags": [
+                  "Items"
+              ],
+              "description": "<p>Stories, comments, jobs, Ask HNs and even polls are just items. They're identified by their ids, which are unique integers, and live under https://hacker-news.firebaseio.com/v0/item/{item-id}</p>\n<p>Story: https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "oneOf": [
+                              {
+                                  "allOf": [
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "integer",
+                                                  "description": "The item's unique id."
+                                              },
+                                              "deleted": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is deleted."
+                                              },
+                                              "type": {
+                                                  "type": "string",
+                                                  "description": "The type of item. One of \"job\", \"story\", \"comment\", \"poll\", or \"pollopt\".I",
+                                                  "enum": [
+                                                      "job",
+                                                      "story",
+                                                      "comment",
+                                                      "poll",
+                                                      "pollopt"
+                                                  ]
+                                              },
+                                              "by": {
+                                                  "type": "string",
+                                                  "description": "The username of the item's author."
+                                              },
+                                              "time": {
+                                                  "type": "integer",
+                                                  "description": "Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                                              },
+                                              "dead": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is dead."
+                                              },
+                                              "kids": {
+                                                  "type": "array",
+                                                  "description": "The ids of the item's comments, in ranked display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "type"
+                                          ]
+                                      },
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "parent": {
+                                                  "type": "integer",
+                                                  "description": "The item's parent. For comments, either another comment or the relevant story. For pollopts, the relevant poll."
+                                              },
+                                              "text": {
+                                                  "type": "string",
+                                                  "description": "The comment, story or poll text. HTML."
+                                              }
+                                          }
+                                      }
+                                  ]
+                              },
+                              {
+                                  "allOf": [
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "integer",
+                                                  "description": "The item's unique id."
+                                              },
+                                              "deleted": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is deleted."
+                                              },
+                                              "type": {
+                                                  "type": "string",
+                                                  "description": "The type of item. One of \"job\", \"story\", \"comment\", \"poll\", or \"pollopt\".I",
+                                                  "enum": [
+                                                      "job",
+                                                      "story",
+                                                      "comment",
+                                                      "poll",
+                                                      "pollopt"
+                                                  ]
+                                              },
+                                              "by": {
+                                                  "type": "string",
+                                                  "description": "The username of the item's author."
+                                              },
+                                              "time": {
+                                                  "type": "integer",
+                                                  "description": "Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                                              },
+                                              "dead": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is dead."
+                                              },
+                                              "kids": {
+                                                  "type": "array",
+                                                  "description": "The ids of the item's comments, in ranked display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "type"
+                                          ]
+                                      },
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "text": {
+                                                  "type": "string",
+                                                  "description": "The comment, story or poll text. HTML."
+                                              },
+                                              "url": {
+                                                  "type": "string",
+                                                  "description": "The URL of the story."
+                                              },
+                                              "title": {
+                                                  "type": "string",
+                                                  "description": "The title of the story, poll or job."
+                                              }
+                                          }
+                                      }
+                                  ]
+                              },
+                              {
+                                  "allOf": [
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "integer",
+                                                  "description": "The item's unique id."
+                                              },
+                                              "deleted": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is deleted."
+                                              },
+                                              "type": {
+                                                  "type": "string",
+                                                  "description": "The type of item. One of \"job\", \"story\", \"comment\", \"poll\", or \"pollopt\".I",
+                                                  "enum": [
+                                                      "job",
+                                                      "story",
+                                                      "comment",
+                                                      "poll",
+                                                      "pollopt"
+                                                  ]
+                                              },
+                                              "by": {
+                                                  "type": "string",
+                                                  "description": "The username of the item's author."
+                                              },
+                                              "time": {
+                                                  "type": "integer",
+                                                  "description": "Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                                              },
+                                              "dead": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is dead."
+                                              },
+                                              "kids": {
+                                                  "type": "array",
+                                                  "description": "The ids of the item's comments, in ranked display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "type"
+                                          ]
+                                      },
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "parts": {
+                                                  "type": "array",
+                                                  "description": "A list of related pollopts, in display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              },
+                                              "descendants": {
+                                                  "type": "integer",
+                                                  "description": "In the case of stories or polls, the total comment count."
+                                              },
+                                              "score": {
+                                                  "type": "integer",
+                                                  "description": "The story's score, or the votes for a pollopt."
+                                              },
+                                              "title": {
+                                                  "type": "string",
+                                                  "description": "The title of the story, poll or job."
+                                              },
+                                              "text": {
+                                                  "type": "string",
+                                                  "description": "The comment, story or poll text. HTML."
+                                              }
+                                          }
+                                      }
+                                  ]
+                              },
+                              {
+                                  "allOf": [
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "integer",
+                                                  "description": "The item's unique id."
+                                              },
+                                              "deleted": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is deleted."
+                                              },
+                                              "type": {
+                                                  "type": "string",
+                                                  "description": "The type of item. One of \"job\", \"story\", \"comment\", \"poll\", or \"pollopt\".I",
+                                                  "enum": [
+                                                      "job",
+                                                      "story",
+                                                      "comment",
+                                                      "poll",
+                                                      "pollopt"
+                                                  ]
+                                              },
+                                              "by": {
+                                                  "type": "string",
+                                                  "description": "The username of the item's author."
+                                              },
+                                              "time": {
+                                                  "type": "integer",
+                                                  "description": "Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                                              },
+                                              "dead": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is dead."
+                                              },
+                                              "kids": {
+                                                  "type": "array",
+                                                  "description": "The ids of the item's comments, in ranked display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "type"
+                                          ]
+                                      },
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "parent": {
+                                                  "type": "integer",
+                                                  "description": "The item's parent. For comments, either another comment or the relevant story. For pollopts, the relevant poll."
+                                              },
+                                              "score": {
+                                                  "type": "integer",
+                                                  "description": "The story's score, or the votes for a pollopt."
+                                              }
+                                          }
+                                      }
+                                  ]
+                              },
+                              {
+                                  "allOf": [
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "id": {
+                                                  "type": "integer",
+                                                  "description": "The item's unique id."
+                                              },
+                                              "deleted": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is deleted."
+                                              },
+                                              "type": {
+                                                  "type": "string",
+                                                  "description": "The type of item. One of \"job\", \"story\", \"comment\", \"poll\", or \"pollopt\".I",
+                                                  "enum": [
+                                                      "job",
+                                                      "story",
+                                                      "comment",
+                                                      "poll",
+                                                      "pollopt"
+                                                  ]
+                                              },
+                                              "by": {
+                                                  "type": "string",
+                                                  "description": "The username of the item's author."
+                                              },
+                                              "time": {
+                                                  "type": "integer",
+                                                  "description": "Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                                              },
+                                              "dead": {
+                                                  "type": "boolean",
+                                                  "description": "`true` if the item is dead."
+                                              },
+                                              "kids": {
+                                                  "type": "array",
+                                                  "description": "The ids of the item's comments, in ranked display order.",
+                                                  "items": {
+                                                      "type": "integer"
+                                                  }
+                                              }
+                                          },
+                                          "required": [
+                                              "id",
+                                              "type"
+                                          ]
+                                      },
+                                      {
+                                          "type": "object",
+                                          "properties": {
+                                              "descendants": {
+                                                  "type": "integer",
+                                                  "description": "In the case of stories or polls, the total comment count."
+                                              },
+                                              "score": {
+                                                  "type": "integer",
+                                                  "description": "The story's score, or the votes for a pollopt."
+                                              },
+                                              "title": {
+                                                  "type": "string",
+                                                  "description": "The title of the story, poll or job."
+                                              },
+                                              "url": {
+                                                  "type": "string",
+                                                  "default": "http://stoplight.io/prism/",
+                                                  "description": "The URL of the story."
+                                              }
+                                          }
+                                      }
+                                  ]
+                              }
+                          ]
+                      }
+                  }
+              }
+          }
+      },
+      "/user/{user-id}.json": {
+          "parameters": [
+              {
+                  "name": "user-id",
+                  "in": "path",
+                  "required": true,
+                  "type": "string"
+              }
+          ],
+          "get": {
+              "operationId": "GET_user-user-id-json",
+              "summary": "Get User By ID",
+              "tags": [
+                  "Users"
+              ],
+              "description": "<p>Users are identified by case-sensitive ids, and live under https://hacker-news.firebaseio.com/v0/user/{user-id}. Only users that have public activity (comments or story submissions) on the site are available through the API.</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "object",
+                          "properties": {
+                              "id": {
+                                  "type": "string",
+                                  "description": "The user's unique username. Case-sensitive."
+                              },
+                              "delay": {
+                                  "type": "integer",
+                                  "description": "Delay in minutes between a comment's creation and its visibility to other users."
+                              },
+                              "created": {
+                                  "type": "integer",
+                                  "description": "Creation date of the user, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time)."
+                              },
+                              "karma": {
+                                  "type": "integer",
+                                  "description": "The user's karma."
+                              },
+                              "about": {
+                                  "type": "string",
+                                  "description": "The user's optional self-description. HTML."
+                              },
+                              "submitted": {
+                                  "type": "array",
+                                  "description": "List of the user's stories, polls and comments.",
+                                  "items": {
+                                      "type": "integer"
+                                  }
+                              }
+                          },
+                          "required": [
+                              "id",
+                              "created",
+                              "karma"
+                          ]
+                      },
+                      "examples": {
+                          "application/json": {
+                              "id": "jl",
+                              "delay": 0,
+                              "created": 1173923446,
+                              "karma": 2937,
+                              "about": "This is a test",
+                              "submitted": [
+                                  8265435,
+                                  8168423,
+                                  8090946,
+                                  8090326,
+                                  7699907,
+                                  7637962,
+                                  7596179,
+                                  7596163,
+                                  7594569,
+                                  7562135,
+                                  7562111,
+                                  7494708,
+                                  7494171,
+                                  7488093,
+                                  7444860,
+                                  7327817,
+                                  7280290,
+                                  7278694,
+                                  7097557,
+                                  7097546,
+                                  7097254,
+                                  7052857,
+                                  7039484,
+                                  6987273,
+                                  6649999,
+                                  6649706,
+                                  6629560,
+                                  6609127,
+                                  6327951,
+                                  6225810,
+                                  6111999,
+                                  5580079,
+                                  5112008,
+                                  4907948,
+                                  4901821,
+                                  4700469,
+                                  4678919,
+                                  3779193,
+                                  3711380,
+                                  3701405,
+                                  3627981,
+                                  3473004,
+                                  3473000,
+                                  3457006,
+                                  3422158,
+                                  3136701,
+                                  2943046,
+                                  2794646,
+                                  2482737,
+                                  2425640,
+                                  2411925,
+                                  2408077,
+                                  2407992,
+                                  2407940,
+                                  2278689,
+                                  2220295,
+                                  2144918,
+                                  2144852,
+                                  1875323,
+                                  1875295,
+                                  1857397,
+                                  1839737,
+                                  1809010,
+                                  1788048,
+                                  1780681,
+                                  1721745,
+                                  1676227,
+                                  1654023,
+                                  1651449,
+                                  1641019,
+                                  1631985,
+                                  1618759,
+                                  1522978,
+                                  1499641,
+                                  1441290,
+                                  1440993,
+                                  1436440,
+                                  1430510,
+                                  1430208,
+                                  1385525,
+                                  1384917,
+                                  1370453,
+                                  1346118,
+                                  1309968,
+                                  1305415,
+                                  1305037,
+                                  1276771,
+                                  1270981,
+                                  1233287,
+                                  1211456,
+                                  1210688,
+                                  1210682,
+                                  1194189,
+                                  1193914,
+                                  1191653,
+                                  1190766,
+                                  1190319,
+                                  1189925,
+                                  1188455,
+                                  1188177,
+                                  1185884,
+                                  1165649,
+                                  1164314,
+                                  1160048,
+                                  1159156,
+                                  1158865,
+                                  1150900,
+                                  1115326,
+                                  933897,
+                                  924482,
+                                  923918,
+                                  922804,
+                                  922280,
+                                  922168,
+                                  920332,
+                                  919803,
+                                  917871,
+                                  912867,
+                                  910426,
+                                  902506,
+                                  891171,
+                                  807902,
+                                  806254,
+                                  796618,
+                                  786286,
+                                  764412,
+                                  764325,
+                                  642566,
+                                  642564,
+                                  587821,
+                                  575744,
+                                  547504,
+                                  532055,
+                                  521067,
+                                  492164,
+                                  491979,
+                                  383935,
+                                  383933,
+                                  383930,
+                                  383927,
+                                  375462,
+                                  263479,
+                                  258389,
+                                  250751,
+                                  245140,
+                                  243472,
+                                  237445,
+                                  229393,
+                                  226797,
+                                  225536,
+                                  225483,
+                                  225426,
+                                  221084,
+                                  213940,
+                                  213342,
+                                  211238,
+                                  210099,
+                                  210007,
+                                  209913,
+                                  209908,
+                                  209904,
+                                  209903,
+                                  170904,
+                                  165850,
+                                  161566,
+                                  158388,
+                                  158305,
+                                  158294,
+                                  156235,
+                                  151097,
+                                  148566,
+                                  146948,
+                                  136968,
+                                  134656,
+                                  133455,
+                                  129765,
+                                  126740,
+                                  122101,
+                                  122100,
+                                  120867,
+                                  120492,
+                                  115999,
+                                  114492,
+                                  114304,
+                                  111730,
+                                  110980,
+                                  110451,
+                                  108420,
+                                  107165,
+                                  105150,
+                                  104735,
+                                  103188,
+                                  103187,
+                                  99902,
+                                  99282,
+                                  99122,
+                                  98972,
+                                  98417,
+                                  98416,
+                                  98231,
+                                  96007,
+                                  96005,
+                                  95623,
+                                  95487,
+                                  95475,
+                                  95471,
+                                  95467,
+                                  95326,
+                                  95322,
+                                  94952,
+                                  94681,
+                                  94679,
+                                  94678,
+                                  94420,
+                                  94419,
+                                  94393,
+                                  94149,
+                                  94008,
+                                  93490,
+                                  93489,
+                                  92944,
+                                  92247,
+                                  91713,
+                                  90162,
+                                  90091,
+                                  89844,
+                                  89678,
+                                  89498,
+                                  86953,
+                                  86109,
+                                  85244,
+                                  85195,
+                                  85194,
+                                  85193,
+                                  85192,
+                                  84955,
+                                  84629,
+                                  83902,
+                                  82918,
+                                  76393,
+                                  68677,
+                                  61565,
+                                  60542,
+                                  47745,
+                                  47744,
+                                  41098,
+                                  39153,
+                                  38678,
+                                  37741,
+                                  33469,
+                                  12897,
+                                  6746,
+                                  5252,
+                                  4752,
+                                  4586,
+                                  4289
+                              ]
+                          }
+                      }
+                  }
+              }
+          }
+      },
+      "/maxitem.json": {
+          "get": {
+              "operationId": "GET_maxitem-json",
+              "summary": "Max Item ID",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>The current largest item id is at https://hacker-news.firebaseio.com/v0/maxitem. You can walk backward from here to discover all items.</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "integer"
+                      },
+                      "examples": {
+                          "application/json": 9130260
+                      }
+                  }
+              }
+          }
+      },
+      "/topstories.json": {
+          "get": {
+              "operationId": "GET_topstories-json",
+              "summary": "New and Top Stories",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>Up to 500 top and new stories are at https://hacker-news.firebaseio.com/v0/topstories and https://hacker-news.firebaseio.com/v0/newstories.</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "type": "integer"
+                          }
+                      },
+                      "examples": {
+                          "application/json": [
+                              9129911,
+                              9129199,
+                              9127761,
+                              9128141,
+                              9128264,
+                              9127792,
+                              9129248,
+                              9127092,
+                              9128367,
+                              9038733
+                          ]
+                      }
+                  }
+              }
+          }
+      },
+      "/askstories.json": {
+          "get": {
+              "operationId": "GET_askstories-json",
+              "summary": "Ask HN Stories",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>Up to 200 of the latest Ask HN Stories!</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "prett"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "type": "integer"
+                          }
+                      },
+                      "examples": {
+                          "application/json": [
+                              9127232,
+                              9128437,
+                              9130049,
+                              9130144,
+                              9130064,
+                              9130028,
+                              9129409,
+                              9127243,
+                              9128571
+                          ]
+                      }
+                  }
+              }
+          }
+      },
+      "/showstories.json": {
+          "get": {
+              "operationId": "GET_showstories-json",
+              "summary": "Show HN Stories",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>Up to 200 of the latest Show HN Stories!</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "type": "integer"
+                          }
+                      },
+                      "examples": {
+                          "application/json": [
+                              9127232,
+                              9128437,
+                              9130049,
+                              9130144,
+                              9130064,
+                              9130028,
+                              9129409,
+                              9127243,
+                              9128571
+                          ]
+                      }
+                  }
+              }
+          }
+      },
+      "/jobstories.json": {
+          "get": {
+              "operationId": "GET_jobstories-json",
+              "summary": "Job HN Stories",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>Up to 200 of the latest Job Stories!</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "array",
+                          "items": {
+                              "type": "integer"
+                          }
+                      },
+                      "examples": {
+                          "application/json": [
+                              9127232,
+                              9128437,
+                              9130049,
+                              9130144,
+                              9130064,
+                              9130028,
+                              9129409,
+                              9127243,
+                              9128571
+                          ]
+                      }
+                  }
+              }
+          }
+      },
+      "/updates.json": {
+          "get": {
+              "operationId": "GET_updates-json",
+              "summary": "Changed Items and Profiles",
+              "tags": [
+                  "Live Data"
+              ],
+              "description": "<p>The item and profile changes are at https://hacker-news.firebaseio.com/v0/updates.</p>\n<p>Example: https://hacker-news.firebaseio.com/v0/updates.json?print=pretty</p>",
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "name": "print",
+                      "in": "query",
+                      "required": false,
+                      "type": "string",
+                      "default": "pretty"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "",
+                      "schema": {
+                          "type": "object",
+                          "properties": {
+                              "items": {
+                                  "type": "array",
+                                  "description": "List of HN Item IDs.",
+                                  "items": {
+                                      "type": "integer"
+                                  }
+                              },
+                              "profiles": {
+                                  "type": "array",
+                                  "description": "List of users identifiers.",
+                                  "items": {
+                                      "type": "string"
+                                  }
+                              }
+                          }
+                      },
+                      "examples": {
+                          "application/json": {
+                              "items": [
+                                  8423305,
+                                  8420805,
+                                  8423379,
+                                  8422504,
+                                  8423178,
+                                  8423336,
+                                  8422717,
+                                  8417484,
+                                  8423378,
+                                  8423238,
+                                  8423353,
+                                  8422395,
+                                  8423072,
+                                  8423044,
+                                  8423344,
+                                  8423374,
+                                  8423015,
+                                  8422428,
+                                  8423377,
+                                  8420444,
+                                  8423300,
+                                  8422633,
+                                  8422599,
+                                  8422408,
+                                  8422928,
+                                  8394339,
+                                  8421900,
+                                  8420902,
+                                  8422087
+                              ],
+                              "profiles": [
+                                  "thefox",
+                                  "mdda",
+                                  "plinkplonk",
+                                  "GBond",
+                                  "rqebmm",
+                                  "neom",
+                                  "arram",
+                                  "mcmancini",
+                                  "metachris",
+                                  "DubiousPusher",
+                                  "dochtman",
+                                  "kstrauser",
+                                  "biren34",
+                                  "foobarqux",
+                                  "mkehrt",
+                                  "nathanm412",
+                                  "wmblaettler",
+                                  "JoeAnzalone",
+                                  "rcconf",
+                                  "johndbritton",
+                                  "msie",
+                                  "cktsai",
+                                  "27182818284",
+                                  "kevinskii",
+                                  "wildwood",
+                                  "mcherm",
+                                  "naiyt",
+                                  "matthewmcg",
+                                  "joelhaus",
+                                  "tshtf",
+                                  "MrZongle2",
+                                  "Bogdanp"
+                              ]
+                          }
+                      }
+                  }
+              }
+          }
+      }
+  },
+  "responses": {
+      "trait:standardErrors:401": {
+          "description": "",
+          "schema": {
+              "type": "object"
+          }
+      },
+      "trait:standardErrors:404": {
+          "description": "",
+          "schema": {
+              "type": "object",
+              "properties": {
+                  "foo": {
+                      "type": "string"
+                  },
+                  "bar": {
+                      "type": "string"
+                  }
+              }
+          }
+      }
+  },
+  "definitions": {
+      "shared-user": {
+          "title": "Shared User",
+          "type": "object",
+          "properties": {
+              "username": {
+                  "type": "string"
+              },
+              "": {
+                  "type": "string"
+              }
+          }
+      }
+  }
+}
