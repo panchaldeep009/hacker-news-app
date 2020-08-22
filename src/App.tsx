@@ -8,7 +8,7 @@ export const App: React.FC = () => {
     <Suspense fallback={<PageLoader />}>
         <Switch>
           {routes.map(({ path, Component }) => (
-            <Route path={path}>
+            <Route path={path} key={path}>
               <Component />
             </Route>
           ))}
