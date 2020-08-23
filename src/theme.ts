@@ -1,14 +1,10 @@
-import { Theme } from "theme-ui";
+import { DefaultTheme, theme } from "@chakra-ui/core";
 
-export const theme: Theme = {
-  fonts: {
-    body: 'sans-serif',
-    heading: '"Avenir Next", sans-serif',
-    monospace: 'Menlo, monospace',
-  },
+export const lightTheme: DefaultTheme = {
+  ...theme,
   colors: {
-    text: '#333',
-    background: '#fefefe',
-    primary: '#ffd500',
-  },
+    ...theme.colors,
+    black: "#444",
+    white: "#fefefe",
+  }
 }

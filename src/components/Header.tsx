@@ -1,8 +1,21 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Box, Heading, Text } from 'theme-ui';
+import { Box, Heading, Text, Flex } from '@chakra-ui/core';
+import Styled from '@emotion/styled';
 import { HeaderButton } from './HeaderButton';
 
 const transition = '0.2s';
+const HeaderBox = Styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: "100%",
+  position: 'sticky',
+  transition,
+  top: 0, left: 0,
+  background: 'rgba(255, 255, 255, .5)',
+  backdropFilter: 'blur(15px)'
+})
 
 export const Header: React.FC = () => {
   const [isWindowScrolled, setSetWindowScrolled] = useState(false);
@@ -19,28 +32,13 @@ export const Header: React.FC = () => {
   }, []);
 
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: "100%",
-      position: 'sticky',
-      transition,
-      top: 0, left: 0,
-      background: 'rgba(255, 255, 255, .5)',
-      backdropFilter: 'blur(15px)',
-      height }}>
-      <Heading color="#777" sx={{ 
-        display: 'inline-flex',
-        fontSize,
-        transition,
-      }}>
-        Hacker <Text color="primary">News</Text>
+    <Box as={HeaderBox} h={height}>
+      <Heading fontSize={fontSize}>
+        Hacker <Text as="span" color="orange.300">News</Text>
       </Heading>
-      <Box sx={{ display: 'flex'}}>
+      <Flex>
         {["Top Stories", "Best Stories", "New Stories"].map(button => <HeaderButton key={button}>{button}</HeaderButton>)}
-      </Box>
+      </Flex>
     </Box>
   )
 }
