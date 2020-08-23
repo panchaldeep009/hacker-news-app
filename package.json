@@ -15,7 +15,6 @@
     "@types/react-dom": "^16.9.0",
     "@types/url-parse": "^1.4.3",
     "emotion-theming": "^10.0.27",
-    "javascript-time-ago": "^2.0.13",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-loading-skeleton": "^2.1.1",
@@ -23,6 +22,7 @@
     "react-scripts": "3.4.3",
     "react-scroll": "^1.8.1",
     "restful-react": "^14.4.0",
+    "timeago.js": "^4.0.2",
     "typescript": "~3.7.2",
     "url-parse": "^1.4.7"
   },
