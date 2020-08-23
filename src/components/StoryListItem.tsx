@@ -72,7 +72,7 @@ export const StoryListItem: React.FC<StoryListItemProps> = ({ storyId, index }) 
             <Link gridArea="title" as="a" href={data.url} fontSize="md">{data.title}</Link>
             {url && <Link gridArea="url" href={url.origin} color="gray.500" fontSize="sm" justifySelf="right">{url.hostname}</Link>}
             <Text gridArea="info" fontSize="sm" color="gray.600">
-              {data.score} points by {data.by} {format(new Date(data.time * 1000))}
+              {data.score} points by {data.by} {format(new Date(data.time * 1000))} | {data.descendants} comments
             </Text>
           </>
         }
@@ -103,7 +103,7 @@ export const StoryListItemLoader: React.FC = () => (
     </Box>
     </StoryMetaBox>
     <StoryViewButton>
-      <Skeleton width={60} height={10} />
+      <Skeleton width={68} height={10} />
     </StoryViewButton>
   </Flex>
 );
