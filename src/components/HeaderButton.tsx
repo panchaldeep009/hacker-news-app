@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Text } from '@chakra-ui/core';
 import Styled from '@emotion/styled';
+import { matchPath, useLocation } from 'react-router-dom';
+interface HeaderProps {
+  isActive?: boolean;
+}
 
 export const HeaderButtonText = Styled.a<HeaderProps>(
   {
@@ -27,14 +31,17 @@ export const HeaderButtonText = Styled.a<HeaderProps>(
         }
 );
 
-interface HeaderProps {
-  isActive?: boolean;
-}
-
-export const HeaderButton: React.FC<HeaderProps> = ({ children, isActive }) => {
+export const HeaderButton: React.FC<React.HTMLProps<HTMLAnchorElement>> = (
+  linkProps
+) => {
+  const { pathname } = useLocation();
+  const isActive = useMemo(
+    () => matchPath(pathname, { path: linkProps.href }),
+    [pathname, linkProps.href]
+  );
   return (
     <Text color="orange.300" px={2}>
-      [<HeaderButtonText isActive={isActive}>{children}</HeaderButtonText>]
+      [<HeaderButtonText isActive={!!isActive} {...linkProps} />]
     </Text>
   );
 };

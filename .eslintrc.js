@@ -33,7 +33,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
     'linebreak-style': 'off',
-    "react/prop-types": 'off',
+    'react/prop-types': 'off',
+    'react/jsx-props-no-spreading': 'off',
     'prettier/prettier': [
       'error',
       {

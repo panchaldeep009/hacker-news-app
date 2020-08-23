@@ -2,9 +2,10 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Box, Heading, Text, Flex } from '@chakra-ui/core';
 import Styled from '@emotion/styled';
 import { HeaderButton } from './HeaderButton';
+import { routes } from '../routes';
 
 const transition = '0.2s';
-const HeaderBox = Styled.div({
+const HeaderBox = Styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -18,6 +19,25 @@ const HeaderBox = Styled.div({
   backdropFilter: 'blur(12px)',
   boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.12)',
 });
+
+const MenuItems = [
+  {
+    name: routes.stories.title,
+    path: routes.stories.path,
+  },
+  {
+    name: routes.ask.title,
+    path: routes.ask.path,
+  },
+  {
+    name: routes.shows.title,
+    path: routes.shows.path,
+  },
+  {
+    name: routes.jobs.title,
+    path: routes.jobs.path,
+  },
+] as const;
 
 export const Header: React.FC = () => {
   const [isWindowScrolled, setSetWindowScrolled] = useState(false);
@@ -45,8 +65,10 @@ export const Header: React.FC = () => {
         </Text>
       </Heading>
       <Flex>
-        {['Top Stories', 'Best Stories', 'New Stories'].map((button) => (
-          <HeaderButton key={button}>{button}</HeaderButton>
+        {MenuItems.map(({ name, path }) => (
+          <HeaderButton key={path} href={path}>
+            {name}
+          </HeaderButton>
         ))}
       </Flex>
     </Box>
