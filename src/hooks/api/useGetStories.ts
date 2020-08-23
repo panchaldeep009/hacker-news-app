@@ -15,9 +15,9 @@ export const storyTypesOptions = [
   },
 ] as const;
 
-export type StoryTypes = (typeof storyTypesOptions)[number]['value'];
+export type StoryType = (typeof storyTypesOptions)[number]['value'];
 
-export const useGetStories = (limit?: number, types?: StoryTypes) => {
+export const useGetStories = (limit?: number, types?: StoryType) => {
   const { data, ...rest } =  useGet<number[]>({
     path: `/${types || 'topstories'}.json`,
   });

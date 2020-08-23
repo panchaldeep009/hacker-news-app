@@ -14,7 +14,8 @@ const HeaderBox = Styled.div({
   transition,
   top: 0, left: 0,
   background: 'rgba(255, 255, 255, .5)',
-  backdropFilter: 'blur(15px)'
+  backdropFilter: 'blur(12px)',
+  boxShadow: '0px 0px 20px 0px rgba(0,0,0,0.12)'
 })
 
 export const Header: React.FC = () => {
@@ -32,7 +33,7 @@ export const Header: React.FC = () => {
   }, []);
 
   return (
-    <Box as={HeaderBox} h={height}>
+    <Box as={HeaderBox} h={height} zIndex={10}>
       <Heading fontSize={fontSize}>
         Hacker <Text as="span" color="orange.300">News</Text>
       </Heading>

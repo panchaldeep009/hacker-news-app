@@ -64,7 +64,7 @@ export const StoryListItem: React.FC<StoryListItemProps> = ({ storyId, index }) 
   const url = useMemo(() => data?.url ? new Url(data.url) : undefined, [data]);
 
   return !loading ? (
-    <Flex m={2}>
+    <Flex my={2}>
       <StoryMetaBox>
         {data &&
           <>
@@ -87,7 +87,7 @@ export const StoryListItem: React.FC<StoryListItemProps> = ({ storyId, index }) 
 }
 
 export const StoryListItemLoader: React.FC = () => (
-  <Flex m={2}>
+  <Flex my={2}>
     <StoryMetaBox>
     <Box gridArea="index" justifySelf="center">
       <Skeleton circle width={20} height={20} />
@@ -103,7 +103,7 @@ export const StoryListItemLoader: React.FC = () => (
     </Box>
     </StoryMetaBox>
     <StoryViewButton>
-      <Skeleton width={68} height={10} />
+      <Skeleton width={70} height={10} />
     </StoryViewButton>
   </Flex>
 );
