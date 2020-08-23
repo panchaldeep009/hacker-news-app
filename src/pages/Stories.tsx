@@ -7,10 +7,8 @@ import {
   storyTypesOptions,
   StoryType,
 } from '../hooks/api/useGetStories';
-import {
-  StoryListItem,
-  StoryListItemLoader,
-} from '../components/StoryListItem';
+import { StoryListItem } from '../components/StoryListItem';
+import { StoryListItemLoader } from '../components/StoryListItemLoader';
 
 const Stories: React.FC = () => {
   const [limit, setLimit] = useState(1);
