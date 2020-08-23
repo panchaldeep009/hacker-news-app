@@ -6,16 +6,22 @@ import {
   useGetStories,
   storyTypesOptions,
   StoryType,
+  StoryCategories,
 } from '../hooks/api/useGetStories';
 import { StoryListItem } from '../components/StoryListItem';
 import { StoryListItemLoader } from '../components/StoryListItemLoader';
 
-const Stories: React.FC = () => {
+interface StoriesProps {
+  category: StoryCategories;
+}
+
+const Stories: React.FC<StoriesProps> = ({ category }) => {
   const [limit, setLimit] = useState(1);
-  const [storyType, setStoryType] = useState<StoryType>(
-    storyTypesOptions[0].value
-  );
+
+  const [storyType, setStoryType] = useState<StoryCategories>(category);
+
   const { data, loading, total } = useGetStories(limit, storyType);
+
   const handleChangeStoryType = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       setStoryType(e.target.value as StoryType);
@@ -29,16 +35,18 @@ const Stories: React.FC = () => {
 
   return (
     <Box maxW={685} margin="0 auto" px={2} pt={30}>
-      <Select
-        onChange={handleChangeStoryType}
-        value={storyType}
-        rounded={8}
-        w={220}
-      >
-        {storyTypesOptions.map(({ label, value }) => (
-          <option value={value}>{label}</option>
-        ))}
-      </Select>
+      {category === 'topstories' && (
+        <Select
+          onChange={handleChangeStoryType}
+          value={storyType}
+          rounded={8}
+          w={220}
+        >
+          {storyTypesOptions.map(({ label, value }) => (
+            <option value={value}>{label}</option>
+          ))}
+        </Select>
+      )}
       {!loading ? (
         <>
           <InfiniteScroll
