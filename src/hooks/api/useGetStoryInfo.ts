@@ -1,4 +1,4 @@
-import { useGet } from "restful-react";
+import { useGet } from 'restful-react';
 
 interface StoryInfo {
   by: string;
@@ -8,10 +8,11 @@ interface StoryInfo {
   score: number;
   time: number;
   title: string;
-  type: "story";
+  type: 'story';
   url: string;
 }
 
-export const useGetStoryInfo = (id: number) => useGet<StoryInfo>({
-  path: `/item/${id}.json`,
-});
+export const useGetStoryInfo = (id: number) =>
+  useGet<StoryInfo>({
+    path: `/item/${id}.json`,
+  });
