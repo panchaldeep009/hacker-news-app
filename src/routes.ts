@@ -1,10 +1,10 @@
 import { lazy } from "react";
-const HomePage = lazy(() => import('./pages/Home'));
+const TopStories = lazy(() => import('./pages/TopStories'));
 
 export const routes = [
   {
-    title: "Home",
+    title: "Top Stories",
     path: "/",
-    Component: HomePage
+    Component: TopStories
   }
 ] as const;
