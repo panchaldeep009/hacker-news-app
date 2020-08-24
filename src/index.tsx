@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter as Router
-} from "react-router-dom";
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
-import { RestfulProvider } from "restful-react";
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { RestfulProvider } from 'restful-react';
+import { HelmetProvider } from 'react-helmet-async';
 
 import * as serviceWorker from './serviceWorker';
 import { App } from './App';
@@ -12,14 +11,16 @@ import { lightTheme } from './theme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={lightTheme}>
-      <CSSReset />
-      <RestfulProvider base="https://hacker-news.firebaseio.com/v0/">
-        <Router>
-          <App/>
-        </Router>
-      </RestfulProvider>
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider theme={lightTheme}>
+        <CSSReset />
+        <RestfulProvider base="https://hacker-news.firebaseio.com/v0/">
+          <Router>
+            <App />
+          </Router>
+        </RestfulProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

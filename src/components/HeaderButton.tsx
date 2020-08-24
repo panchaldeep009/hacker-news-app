@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { Text } from '@chakra-ui/core';
 import Styled from '@emotion/styled';
 import { matchPath, useLocation, useHistory } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 interface HeaderProps {
   isActive?: boolean;
 }
@@ -42,14 +43,19 @@ export const HeaderButton: React.FC<React.HTMLProps<HTMLAnchorElement>> = ({
     href,
   ]);
   return (
-    <Text color="orange.300" px={2}>
-      [
-      <HeaderButtonText
-        isActive={!!isActive}
-        onClick={() => href && push(href)}
-        {...linkProps}
-      />
-      ]
-    </Text>
+    <>
+      <Helmet>
+        {isActive && <title> {linkProps.children} | Hacker News</title>}
+      </Helmet>
+      <Text color="orange.300" px={2}>
+        [
+        <HeaderButtonText
+          isActive={!!isActive}
+          onClick={() => href && push(href)}
+          {...linkProps}
+        />
+        ]
+      </Text>
+    </>
   );
 };

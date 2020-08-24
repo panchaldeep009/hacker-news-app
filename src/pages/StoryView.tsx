@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { StoryInfoLine } from '../components/StoryInfoLine';
 import { Comments } from '../components/Comments';
+import { Helmet } from 'react-helmet-async';
 
 const StoryView: React.FC = () => {
   const { id: storyId } = useParams<{ id: string }>();
@@ -24,6 +25,9 @@ const StoryView: React.FC = () => {
         </>
       ) : (
         <>
+          <Helmet>
+            <title> {data?.title} </title>
+          </Helmet>
           <Heading> {data?.title} </Heading>
           {data && <StoryInfoLine data={data} />}
           <Divider my={5} />
