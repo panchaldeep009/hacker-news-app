@@ -1,6 +1,6 @@
 import { useGet } from 'restful-react';
 
-interface StoryInfo {
+export interface StoryInfo {
   by: string;
   descendants: number;
   id: number;
@@ -10,6 +10,7 @@ interface StoryInfo {
   title: string;
   type: 'story';
   url: string;
+  text?: string;
 }
 
 export const useGetStoryInfo = (id: number) =>

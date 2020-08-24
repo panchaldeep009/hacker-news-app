@@ -43,7 +43,9 @@ const Stories: React.FC<StoriesProps> = ({ category }) => {
           w={220}
         >
           {storyTypesOptions.map(({ label, value }) => (
-            <option value={value}>{label}</option>
+            <option value={value} key={value}>
+              {label}
+            </option>
           ))}
         </Select>
       )}

@@ -16,7 +16,7 @@ export const StoryListItemLoader: React.FC = () => (
         <Skeleton width={100} height={10} />
       </Box>
       <Box gridArea="info">
-        <Skeleton width={140} height={8} />
+        <Skeleton height={8} />
       </Box>
     </StoryMetaBox>
     <StoryViewButton>
