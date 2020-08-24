@@ -31,8 +31,7 @@ const StoryView: React.FC = () => {
             <Box dangerouslySetInnerHTML={{ __html: data.text }} />
           )}
           <Heading mt={5} size="md">
-            {' '}
-            Comments ({data?.descendants || 0}){' '}
+            Comments ({data?.descendants || 0})
           </Heading>
           <Divider my={3} />
           {data?.kids && <Comments ids={data.kids} />}

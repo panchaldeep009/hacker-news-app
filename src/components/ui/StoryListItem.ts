@@ -1,5 +1,5 @@
 import Styled from '@emotion/styled';
-import { Box, Flex, DefaultTheme } from '@chakra-ui/core';
+import { Box, DefaultTheme, Link } from '@chakra-ui/core';
 
 export const StoryMetaBox = Styled(
   Styled(Box)({
@@ -27,13 +27,14 @@ grid-template-areas:
 }
 `;
 
-export const StoryViewButton = Styled(Flex)(({ theme }) => {
+export const StoryViewButton = Styled(Link)(({ theme }) => {
   const {
     colors: { orange },
     fontSizes: { sm: fontSize },
   } = theme as DefaultTheme;
   return {
     borderWidth: 1,
+    display: 'flex',
     borderStyle: 'solid',
     borderColor: orange[300],
     color: orange[300],

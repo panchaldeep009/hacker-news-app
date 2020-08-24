@@ -34,10 +34,6 @@ export const StoryListItem: React.FC<StoryListItemProps> = ({
     }
     push(detailsPageUrl);
   }, [data, detailsPageUrl, push]);
-  const gotoDetailsPage = useCallback(() => push(detailsPageUrl), [
-    detailsPageUrl,
-    push,
-  ]);
 
   return !loading ? (
     <Flex my={2}>
@@ -62,11 +58,11 @@ export const StoryListItem: React.FC<StoryListItemProps> = ({
                 {url.hostname}
               </Link>
             )}
-            <StoryInfoLine data={data} gotoDetailsPage={gotoDetailsPage} />
+            <StoryInfoLine data={data} link={detailsPageUrl} />
           </>
         )}
       </StoryMetaBox>
-      <StoryViewButton onClick={gotoDetailsPage}>View Details</StoryViewButton>
+      <StoryViewButton href={detailsPageUrl}>View Details</StoryViewButton>
     </Flex>
   ) : (
     <StoryListItemLoader />
